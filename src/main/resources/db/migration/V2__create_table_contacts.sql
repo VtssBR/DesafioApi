@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS contact (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL,
+    valor VARCHAR(100) UNIQUE NOT NULL,
+    observacao VARCHAR(255),
+    id_client INTEGER REFERENCES client(id) ON DELETE CASCADE
+);
+
