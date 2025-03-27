@@ -2,6 +2,7 @@ package com.vitor.desafioApi.controllers;
 
 import com.vitor.desafioApi.model.client.Client;
 import com.vitor.desafioApi.model.client.ClientRequestDTO;
+import com.vitor.desafioApi.model.client.ClientRequestUpdateDTO;
 import com.vitor.desafioApi.model.client.ClientResponseDTO;
 import com.vitor.desafioApi.services.ClientService;
 import org.springframework.http.ResponseEntity;
@@ -29,4 +30,21 @@ public class ClientController {
         List<ClientResponseDTO> clients = clientService.listClients();
         return ResponseEntity.ok(clients);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDTO> getClientById(@PathVariable int id) {
+        return ResponseEntity.ok(clientService.getClientById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ClientResponseDTO> updateClient(@PathVariable int id, @RequestBody ClientRequestUpdateDTO body) {
+        return ResponseEntity.ok(clientService.updateClient(id, body));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteClient(@PathVariable int id) {
+        clientService.deleteClient(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
