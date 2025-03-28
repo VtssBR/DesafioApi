@@ -46,7 +46,12 @@ public class ClientController {
         clientService.deleteClient(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<ClientResponseDTO>> queryClients(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String cpf) {
 
-
-
+        List<ClientResponseDTO> clients = clientService.queryClients(nome, cpf);
+        return ResponseEntity.ok(clients);
+    }
 }

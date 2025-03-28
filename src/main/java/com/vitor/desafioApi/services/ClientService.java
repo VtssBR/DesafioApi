@@ -1,9 +1,6 @@
 package com.vitor.desafioApi.services;
 
-import com.vitor.desafioApi.model.client.Client;
-import com.vitor.desafioApi.model.client.ClientResponseDTO;
-import com.vitor.desafioApi.model.client.ClientRequestDTO;
-import com.vitor.desafioApi.model.client.ClientRequestUpdateDTO;
+import com.vitor.desafioApi.model.client.*;
 import com.vitor.desafioApi.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,6 +82,25 @@ public class ClientService {
     public void deleteClient(Integer id) {
         Client client = clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
         clientRepository.delete(client);
+    }
+
+    //READ BY NAME OR CPF
+    public List<ClientResponseDTO> queryClients(String nome, String cpf){
+        if ((nome == null || nome.isBlank()) && (cpf == null || cpf.isBlank())) {
+            throw new IllegalArgumentException("Nome ou CPF devem ser informados para a busca.");
+        }
+        List<Client> clients = clientRepository.findByNomeOrCpf(nome, cpf);
+        List<ClientResponseDTO> responseList = new ArrayList<>();
+
+        clients.forEach(client -> responseList.add(new ClientResponseDTO(
+                client.getId(),
+                client.getNome(),
+                client.getCpf(),
+                client.getDataNascimento(),
+                client.getEndereco()
+        )));
+
+        return responseList;
     }
 
 }
