@@ -1,7 +1,7 @@
 package com.vitor.desafioApi.model.contact;
 
-import jakarta.persistence.*;
 import com.vitor.desafioApi.model.client.Client;
+import jakarta.persistence.*;
 
 @Table(name = "contact")
 @Entity
@@ -10,6 +10,7 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 
     @ManyToOne
     @JoinColumn(name = "id_client")
@@ -32,12 +33,11 @@ public class Contact {
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 
-    public Client  getIdClient() {return client;}
-    public void setIdClient(int idClient) {this.client = client;}
+    public Client  getClient() { return client; }
+    public void setClient(Client  client) { this.client = client; }
 
     public String getTipo() {return tipo;}
     public void setTipo(String tipo) {this.tipo = tipo;}
-
 
     public String getValor() {return valor;}
     public void setValor(String valor) {this.valor = valor;}
