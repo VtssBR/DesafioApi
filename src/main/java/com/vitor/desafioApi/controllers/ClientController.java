@@ -7,6 +7,7 @@ import com.vitor.desafioApi.model.client.ClientResponseDTO;
 import com.vitor.desafioApi.services.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class ClientController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Client> createClient(@RequestBody ClientRequestDTO body) {
+    public ResponseEntity<Client> createClient(@Valid @RequestBody ClientRequestDTO body) {
         Client client = clientService.createClient(body);
         return ResponseEntity.ok(client);
     }
@@ -37,7 +38,7 @@ public class ClientController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ClientResponseDTO> updateClient(@PathVariable int id, @RequestBody ClientRequestUpdateDTO body) {
+    public ResponseEntity<ClientResponseDTO> updateClient(@PathVariable int id,@Valid @RequestBody ClientRequestUpdateDTO body) {
         return ResponseEntity.ok(clientService.updateClient(id, body));
     }
 

@@ -6,6 +6,7 @@ import com.vitor.desafioApi.model.contact.ContactResponseDTO;
 import com.vitor.desafioApi.model.contact.ContactRequestDTO;
 import com.vitor.desafioApi.model.contact.Contact;
 import com.vitor.desafioApi.services.ContactService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class ContactController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Contact> createContact(@RequestBody ContactRequestDTO body) {
+    public ResponseEntity<Contact> createContact(@Valid @RequestBody ContactRequestDTO body) {
         Contact contact = contactService.createContact(body);
         return ResponseEntity.ok(contact);
     }
@@ -35,7 +36,7 @@ public class ContactController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ContactResponseDTO> updateContact(@PathVariable int id, @RequestBody ContactRequestUpdateDTO body) {
+    public ResponseEntity<ContactResponseDTO> updateContact(@PathVariable int id, @Valid @RequestBody ContactRequestUpdateDTO body) {
         return ResponseEntity.ok(contactService.updateContact(id, body));
     }
 

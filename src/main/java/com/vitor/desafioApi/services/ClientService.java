@@ -19,6 +19,10 @@ public class ClientService {
 
     //CREATE
     public Client createClient(ClientRequestDTO body){
+        if (clientRepository.existsByCpf(body.cpf())){
+            throw new IllegalArgumentException("Já existe um cliente cadastrado com o CPF: ");
+        }
+
         Client client = new Client();
         client.setNome(body.nome());
         client.setCpf(body.cpf());
@@ -61,6 +65,16 @@ public class ClientService {
     public ClientResponseDTO updateClient(Integer id, ClientRequestUpdateDTO body) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
+
+        body.cpf().ifPresent(cpf -> {
+            if (cpf.length() != 14) {
+                throw new IllegalArgumentException("O CPF deve ter exatamente 14 dígitos.");
+            }
+
+            if (clientRepository.existsByCpf(cpf)) {
+                throw new IllegalArgumentException("Já existe um cliente cadastrado com o CPF: ");
+            }
+        });
 
         body.nome().ifPresent(client::setNome);
         body.cpf().ifPresent(client::setCpf);

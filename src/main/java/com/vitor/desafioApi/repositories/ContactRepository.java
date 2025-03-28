@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ContactRepository extends JpaRepository<Contact, Integer>{
     List<Contact> findByClient(Client client);
+    boolean existsByValor(String valor);
 }
