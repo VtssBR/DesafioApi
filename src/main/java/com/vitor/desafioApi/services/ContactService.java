@@ -30,7 +30,7 @@ public class ContactService {
         Contact contact = new Contact();
         Client client = clientRepository.findById(body.clientId()).orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
 
-        if (clientRepository.existsByCpf(body.valor())){
+        if (contactRepository.existsByValor(body.valor())){
             throw new IllegalArgumentException("Já existe este contato para este cliente ");
         }
 
@@ -64,7 +64,7 @@ public class ContactService {
 
         if (body.valor().isPresent()) {
             if (clientRepository.existsByCpf(body.valor().get())) {
-                throw new IllegalArgumentException("Já existe este contato cadastrado: " + body.valor().get());
+                throw new IllegalArgumentException("Já existe este contato cadastrado: ");
             }
         }
 
