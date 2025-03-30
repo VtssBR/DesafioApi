@@ -67,10 +67,6 @@ public class ClientService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
 
         body.cpf().ifPresent(cpf -> {
-            if (cpf.length() != 14) {
-                throw new IllegalArgumentException("O CPF deve ter exatamente 14 dígitos.");
-            }
-
             if (clientRepository.existsByCpf(cpf)) {
                 throw new IllegalArgumentException("Já existe um cliente cadastrado com o CPF: ");
             }
