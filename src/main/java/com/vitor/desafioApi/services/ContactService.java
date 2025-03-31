@@ -28,10 +28,10 @@ public class ContactService {
     //CREATE
     public Contact createContact(ContactRequestDTO body){
         Contact contact = new Contact();
-        Client client = clientRepository.findById(body.clientId()).orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
+            Client client = clientRepository.findById(body.clientId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
 
         if (contactRepository.existsByValor(body.valor())){
-            throw new IllegalArgumentException("Já existe este contato para este cliente ");
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST,("Já existe este contato para este cliente "));
         }
 
         contact.setClient(client);
@@ -64,7 +64,7 @@ public class ContactService {
 
         if (body.valor().isPresent()) {
             if (clientRepository.existsByCpf(body.valor().get())) {
-                throw new IllegalArgumentException("Já existe este contato cadastrado: ");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,("Já existe este contato para este cliente "));
             }
         }
 

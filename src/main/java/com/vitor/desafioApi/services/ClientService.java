@@ -20,7 +20,7 @@ public class ClientService {
     //CREATE
     public Client createClient(ClientRequestDTO body){
         if (clientRepository.existsByCpf(body.cpf())){
-            throw new IllegalArgumentException("Já existe um cliente cadastrado com o CPF: ");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe um cliente cadastrado com o CPF: ");
         }
 
         Client client = new Client();
@@ -50,7 +50,7 @@ public class ClientService {
 
     //READ ID
     public ClientResponseDTO getClientById(Integer id){
-        Client client = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
+        Client client = clientRepository.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente não encontrado!"));
         return new ClientResponseDTO(
                 client.getId(),
                 client.getNome(),
@@ -68,7 +68,7 @@ public class ClientService {
 
         body.cpf().ifPresent(cpf -> {
             if (clientRepository.existsByCpf(cpf)) {
-                throw new IllegalArgumentException("Já existe um cliente cadastrado com o CPF: ");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Já existe um cliente cadastrado com o CPF: ");
             }
         });
 
@@ -94,23 +94,5 @@ public class ClientService {
         clientRepository.delete(client);
     }
 
-    //READ BY NAME OR CPF
-    public List<ClientResponseDTO> queryClients(String nome, String cpf){
-        if ((nome == null || nome.isBlank()) && (cpf == null || cpf.isBlank())) {
-            throw new IllegalArgumentException("Nome ou CPF devem ser informados para a busca.");
-        }
-        List<Client> clients = clientRepository.findByNomeOrCpf(nome, cpf);
-        List<ClientResponseDTO> responseList = new ArrayList<>();
-
-        clients.forEach(client -> responseList.add(new ClientResponseDTO(
-                client.getId(),
-                client.getNome(),
-                client.getCpf(),
-                client.getDataNascimento(),
-                client.getEndereco()
-        )));
-
-        return responseList;
-    }
 
 }
