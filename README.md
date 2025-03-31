@@ -62,7 +62,7 @@ Certifique-se de ter os seguintes pré-requisitos instalados:
 ### 📌 **Clonar o Repositório**
 
 ```bash
-git clone https://github.com/seu-usuario/desafioApi.git
+git clone https://github.com/VtssBR/DesafioApi
 cd desafioApi
 ```
 
