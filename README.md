@@ -92,7 +92,7 @@ spring.jpa.hibernate.ddl-auto=validate
 spring.flyway.enabled=true
 spring.flyway.baseline-on-migrate=true
 ```
-
+Obs: no controller configurar o CORS: @CrossOrigin(origins = "http://localhost:sua_porta")
 ---
 
 ## 4. Executando a API 🚀
