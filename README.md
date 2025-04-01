@@ -39,14 +39,14 @@ A API permite realizar operações CRUD (Create, Read, Update, Delete) para **cl
 Certifique-se de ter os seguintes pré-requisitos instalados:
 
 1. **Java 21** → Necessário para rodar o Spring Boot
-    - Baixe e instale: [https://jdk.java.net/21/](https://jdk.java.net/21/)
+    - Baixe e instale: [[https://jdk.java.net/21/](https://jdk.java.net/21/](https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows))
     - Verifique a instalação:
       ```bash
       java -version
       ```
 
 2. **Maven** → Gerenciador de dependências e build
-    - Baixe e instale: [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
+    - Baixe e instale: [https://maven.apache.org/download.cgi)
     - Verifique a instalação:
       ```bash
       mvn -version
