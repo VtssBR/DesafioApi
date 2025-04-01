@@ -72,7 +72,6 @@ Caso precise instalar as dependências manualmente, execute o seguinte comando:
 ```bash
 mvn clean install
 ```
-
 Isso garantirá que todas as dependências sejam baixadas corretamente.
 
 ### 📌 **Configurar as Variáveis de Ambiente**
@@ -95,6 +94,13 @@ spring.flyway.baseline-on-migrate=true
 Obs: no controller configurar o CORS: @CrossOrigin(origins = "http://localhost:sua_porta")
 ```
 ---
+
+### 📌 **Scritp de inicialização**
+Apos instalado as dependecias e configurado o acesso ao banco de dados execute a migration
+
+```bash
+mvn flyway:migrate
+```
 
 ## 4. Executando a API 🚀
 
