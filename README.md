@@ -95,13 +95,6 @@ Obs: no controller configurar o CORS: @CrossOrigin(origins = "http://localhost:s
 ```
 ---
 
-### 📌 **Scritp de inicialização**
-Apos instalado as dependecias e configurado o acesso ao banco de dados execute a migration
-
-```bash
-mvn flyway:migrate
-```
-
 ## 4. Executando a API 🚀
 
 Para rodar a API localmente, execute o seguinte comando no terminal:
