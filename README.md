@@ -39,7 +39,7 @@ A API permite realizar operações CRUD (Create, Read, Update, Delete) para **cl
 Certifique-se de ter os seguintes pré-requisitos instalados:
 
 1. **Java 21** → Necessário para rodar o Spring Boot
-    - Baixe e instale: [[https://jdk.java.net/21/](https://jdk.java.net/21/](https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows))
+    - Baixe e instale: [https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows)
     - Verifique a instalação:
       ```bash
       java -version
